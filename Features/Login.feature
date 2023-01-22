@@ -7,8 +7,8 @@ Scenario: Login user as User
 	Given I navigate to application
 	And I click the Login link
 	And I enter username and password
-		| UserName               | Password |
-		| natlisjo@gmail.com     | Tindra52# |
+		| UserName          | Password |
+		| natlee@list.ru    | Tindra  |
 	And I click login
 	Then I should see user logged in to the application
 	 

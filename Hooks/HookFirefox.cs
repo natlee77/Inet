@@ -25,14 +25,16 @@ namespace Inet.Hooks
              
             new DriverManager().SetUpDriver(new FirefoxConfig());
             Console.WriteLine("Setup");
-           
+
             //_driverHelper.Driver = new FirefoxDriver(option);
+
         }
 
         [AfterScenario]
         public void AfterScenario()
         {
             _driverHelper.Driver.Quit();
+            Console.WriteLine($" Test scenario finished");
         }
     }
 }
