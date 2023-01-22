@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Inet.Drivers;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,16 +8,17 @@ namespace Inet.Pages
 {
     public class LoginPage
     {
-        private IWebDriver Driver;
+        private readonly DriverFixture driverFixture;
 
-        public LoginPage(IWebDriver driver)
+
+        public LoginPage(DriverFixture driverFixture)
         {
-            Driver = driver;
+            this.driverFixture = driverFixture;
         }
 
-        IWebElement txtUserName => Driver.FindElement(By.XPath("//input[@id='login.email']"));
-        IWebElement txtPassword => Driver.FindElement(By.XPath("//input[@id='password']"));
-        IWebElement btnLogin => Driver.FindElement(By.CssSelector("button[type='submit']"));
+        IWebElement txtUserName => driverFixture.Driver.FindElement(By.XPath("//input[@id='login.email']"));
+        IWebElement txtPassword => driverFixture.Driver.FindElement(By.XPath("//input[@id='password']"));
+        IWebElement btnLogin => driverFixture.Driver.FindElement(By.CssSelector("button[type='submit']"));
 
 
         public void EnterUserNameAndPassword(string userName, string password)

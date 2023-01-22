@@ -6,23 +6,24 @@ using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
+using System.Data;
 
-namespace Inet.Steps
+namespace Inet.StepDefinitions
 {
 
     [Binding]
-    public class LoginSteps
+    public class LoginStepDefinitions
     {
 
-        private readonly DriverHelper _driverHelper;
+        private readonly DriverFixture _driverHelper;
         readonly  HomePage  homePage;
         readonly  LoginPage loginPage;
 
-        public LoginSteps(DriverHelper driverHelper)
+        public LoginStepDefinitions(DriverFixture driverHelper )
         {
             _driverHelper = driverHelper;
-            homePage = new HomePage(_driverHelper.Driver);
-            loginPage = new LoginPage(_driverHelper.Driver);
+            homePage = new HomePage(driverHelper);
+            loginPage = new LoginPage(driverHelper);
         }
 
        
@@ -45,6 +46,10 @@ namespace Inet.Steps
         {
             dynamic data = table.CreateDynamicInstance();
             loginPage.EnterUserNameAndPassword(data.UserName, data.Password);
+            foreach (var item in data)
+            {
+                Console.WriteLine($"The user info: {item.ToString()}");
+            }
         }
 
         [Given(@"I click login")]
@@ -59,7 +64,9 @@ namespace Inet.Steps
             Assert.That(homePage.IsLogOffExist(), Is.True, "Log off button did not displayed");
         }
 
+        
 
+        
 
     }
 }
