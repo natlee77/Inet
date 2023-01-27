@@ -1,0 +1,32 @@
+﻿ #!groovy
+
+
+ properties([disableConcurrentBuilds()])
+
+pipeline {
+    agent { 
+        label 'master'
+        }
+ 
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+        timestamps()
+        }
+
+
+    stages {
+
+        stage("Preparations") {
+			steps {  deleteDir() /* clean up our workspace */	 }		}
+
+         
+
+        stage("Run api tests") {
+					steps {		build job: "toGit"
+						echo " =========== started test"	}		}
+         }
+
+
+    }
+}
+ 

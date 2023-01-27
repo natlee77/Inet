@@ -12,18 +12,18 @@ namespace Inet.StepDefinitions
 {
 
     [Binding]
-    public class LoginStepDefinitions
+    public sealed class LoginStepDefinitions
     {
 
         private readonly DriverFixture _driverHelper;
-        readonly  HomePage  homePage;
-        readonly  LoginPage loginPage;
+        private readonly   HomePage  homePage;
+        private readonly   LoginPage loginPage;
 
-        public LoginStepDefinitions(DriverFixture driverHelper )
+        public LoginStepDefinitions(DriverFixture driverHelper, HomePage homePage, LoginPage loginPage)
         {
-            _driverHelper = driverHelper;
-            homePage = new HomePage(driverHelper);
-            loginPage = new LoginPage(driverHelper);
+            this._driverHelper = driverHelper;
+            this.homePage = new HomePage(driverHelper);
+            this.loginPage = new LoginPage(driverHelper);
         }
 
        

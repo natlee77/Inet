@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Inet.Pages
 {
-    class HomePage
+    public class HomePage
     {
         private readonly DriverFixture driverFixture;
 
