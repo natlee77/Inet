@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inet", "Inet.csproj", "{F947DC3F-DAE3-4DF6-8D1F-34514B58CBF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inet", "Inet.csproj", "{F947DC3F-DAE3-4DF6-8D1F-34514B58CBF4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{950FC2BD-C65A-4748-946A-E6F05C1A69A4}"
+	ProjectSection(SolutionItems) = preProject
+		Jenkinsfile.txt = Jenkinsfile.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
