@@ -26,7 +26,26 @@ pipeline {
                bat '"C:\\ProgramData\\chocolatey\\lib\\nunit-console-runner\\tools\\nunit3-console.exe"  bin/Debug/net6.0/Inet.dll  '
             }
         }
+         stage ("cucumber report"){
+            steps{
+             cucumber buildStatus: 'null', 
+             customCssFiles: '', 
+             customJsFiles: '', 
+             fileIncludePattern: '**/*.json', 
+            
+             sortingMethod: 'ALPHABETICAL',
+             classifications: [
+                    [
+                        'key': 'Browser',
+                        'value': 'Firefox'
+                    ],
+                    [
+                        'key': 'Platform',
+                        'value': 'Windows'
+                        ]
+                ]
+            }
+        }
+        
     }
 }
-
- 
