@@ -1,5 +1,7 @@
 ﻿pipeline {
     agent any
+    environment {
+    HOME = '.'}
 
     stages {
         stage('Check out the git repository') {
