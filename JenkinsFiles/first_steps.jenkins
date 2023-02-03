@@ -4,29 +4,29 @@
  properties([disableConcurrentBuilds()])
 
 pipeline {
-    agent { 
-        label 'master'
-        }
- 
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
-        timestamps()
-        }
-
+    agent any
 
     stages {
-
-        stage("Preparations") {
-			steps {  deleteDir() /* clean up our workspace */	 }		}
-
-         
-
-        stage("Run api tests") {
-					steps {		build job: "toGit"
-						echo " =========== started test"	}		}
-         }
-
-
+        stage('Check out the git repository') {
+            steps {
+               git 'https://github.com/natlee77/Inet.git'
+            }
+        }
+         stage('Restore NuGet ') {
+            steps {
+               bat ' "C:\\ProgramData\\chocolatey\\lib\\NuGet.CommandLine\\tools\\nuget.exe" restore Inet.sln'
+            }
+        }
+         stage('Build VSproject with MSBuild') {
+            steps {
+          bat '"D:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\msbuild" Inet.sln /p:Configuration=Debug /p:Platform="Any CPU" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"' }
+        }
+         stage('Test') {
+            steps {
+               bat '"C:\\ProgramData\\chocolatey\\lib\\nunit-console-runner\\tools\\nunit3-console.exe"  bin/Debug/net6.0/Inet.dll  '
+            }
+        }
     }
 }
+
  
