@@ -7,6 +7,7 @@ using System.Text;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using System.Data;
+using System.Threading;
 
 namespace Inet.StepDefinitions
 {
@@ -56,6 +57,7 @@ namespace Inet.StepDefinitions
         public void GivenIClickLogin()
         {
             loginPage.ClickLogin();
+            Thread.Sleep(1000);
         }
 
         [Then(@"I should see user logged in to the application")]
